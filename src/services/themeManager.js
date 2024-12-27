@@ -54,13 +54,16 @@ const mappedMonacoThemes = {
 const defineTheme = async (theme) => {
   try {
     const monaco = await loader.init();
-    const response = await fetch(`/themes/${mappedMonacoThemes[theme]}.json`);
+    const response = await fetch(
+      `${import.meta.env.VITE_THEME_CDN}/themes/${mappedMonacoThemes[theme]}.json`
+    );
 
     if (!response.ok) {
       throw new Error(`Theme file not found: ${theme}`);
     }
 
     const themeData = await response.json();
+    // console.log(themeData)
     monaco.editor.defineTheme(theme, themeData);
   } catch (error) {
     console.error("Error loading theme:", error);
