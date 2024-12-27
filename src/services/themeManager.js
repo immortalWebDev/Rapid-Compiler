@@ -50,3 +50,22 @@ const mappedMonacoThemes = {
   krtheme: "krTheme",
   monoindustrial: "monoindustrial",
 };
+
+const defineTheme = async (theme) => {
+  try {
+    const monaco = await loader.init();
+    const response = await fetch(`/themes/${mappedMonacoThemes[theme]}.json`);
+
+    if (!response.ok) {
+      throw new Error(`Theme file not found: ${theme}`);
+    }
+
+    const themeData = await response.json();
+    monaco.editor.defineTheme(theme, themeData);
+  } catch (error) {
+    console.error("Error loading theme:", error);
+    throw error;
+  }
+};
+
+export { defineTheme };
