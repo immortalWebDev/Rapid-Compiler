@@ -5,9 +5,15 @@ import { themeStyles} from "../config/themeStyles";
 
 const ThemeSelector = ({ handleThemeChange, theme }) => {
 
+  const themeOptions = Object.entries(monacoThemes).map(([id, name]) => ({
+    label: name,
+    value: id,
+  }));
+
   return (
     <Select
       placeholder="Select Theme"
+      options={themeOptions}
       value={theme}
       styles={themeStyles}
       onChange={handleThemeChange}
