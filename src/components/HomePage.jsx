@@ -1,6 +1,17 @@
-import React, { useState } from "react";
-import Navbar from "./Navbar";
-import CodeEditor from "./CodeEditor";
+import React, { useEffect, useState} from "react";
+import { toast, Toaster } from "react-hot-toast"; 
+import { languageOptions } from "../config/languageOptions";
+import { useCompile, useTheme } from "../hooks/hooksExpo";
+import {
+  CodeEditor,
+  ResultWindow,
+  ResultDetails,
+  ThemeSelector,
+  LanguagesDropdown,
+  Navbar,
+  Footer,
+} from "./componentsExpo";
+
 
 const HomePage = () => {
   const [code, setCode] = useState(`code here`);
@@ -8,10 +19,13 @@ const HomePage = () => {
   return (
     <>
       <Navbar handleThemeChange={handleThemeChange} />
-      <div className="flex">
-        <span className="text-xl font-bold text-gray-800"></span>
+      <div className="flex flex-row gap-8 mt-4 flex-wrap md:flex-nowrap">
+        <div className="px-4 py-2 flex items-center gap-4">
+          <span className="text-xl font-bold text-gray-800">🌐</span>
 
-        <h1 className="text-xl font-mono">Language:</h1>
+          <h1 className="text-xl font-bold text-gray-800 font-mono">
+            Language:
+          </h1>
 
         <div className="px-4 py-2">
           <span className="text-xl font-bold text-gray-800"></span>
