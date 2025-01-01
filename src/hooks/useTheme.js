@@ -16,7 +16,7 @@ const useTheme = (defaultTheme) => {
   const handleThemeChange = async (selectedTheme) => {
     if (["light", "vs-dark"].includes(selectedTheme.value)) {
       setTheme(selectedTheme);
-      console.log("Selected theme: ", theme);
+      // console.log("Selected theme: ", theme);
     } else {
       await defineTheme(selectedTheme.value);
       setTheme(selectedTheme);

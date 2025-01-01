@@ -36,7 +36,7 @@ const useCompile = (
         }
       );
 
-      console.log("response received from server", response.data);
+      // console.log("response received from server", response.data);
 
       const token = response.data.token;
       await checkStatus(token); // Check the status of the compilation
@@ -77,7 +77,7 @@ const useCompile = (
       } else {
         setProcessing(false);
         setOutputDetails(response.data); // Set the final output details
-        console.log(response.data)
+        // console.log(response.data)
         showSuccessToast("Compiled Successfully!");
       }
     } catch (err) {

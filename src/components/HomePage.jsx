@@ -54,7 +54,7 @@ const HomePage = () => {
 
 
   const onSelectChange = (sl) => {
-    console.log("selected Option...", sl);
+    // console.log("selected Option...", sl);
     setLanguage(sl);
   };
 
