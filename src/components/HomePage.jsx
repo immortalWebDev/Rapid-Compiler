@@ -131,8 +131,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
-      {/* footer here */}
+      <Footer />
     </>
   );
 };
