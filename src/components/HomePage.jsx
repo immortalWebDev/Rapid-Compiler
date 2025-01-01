@@ -14,10 +14,69 @@ import {
 
 
 const HomePage = () => {
-  const [code, setCode] = useState(`code here`);
+  
+  const [code, setCode] = useState(`console.log("Hello World, I'm Piyush!")`);
+  const [outputDetails, setOutputDetails] = useState(null);
+  const [language, setLanguage] = useState(languageOptions[0]);
+  const { theme, handleThemeChange } = useTheme("cobalt");
+
+
+  const showSuccessToast = (msg) => {
+    toast.dismiss();
+    toast.success(msg || `Compiled Successfully!`, {
+      duration: 2000, 
+      style: {
+        marginTop: "3.5rem",
+        color: 'blue'
+      },
+    });
+  };
+
+  
+  const showErrorToast = (msg, timer) => {
+    toast.dismiss();
+    toast.error(msg || `Something went wrong! Please try again.`, {
+      duration: timer || 2000,
+      style: {
+        marginTop: "3.5rem",
+        color: 'red'
+      },
+    });
+  };
+
+  const { handleCompile, processing } = useCompile(
+    language,
+    code,
+    setOutputDetails,
+    showErrorToast,
+    showSuccessToast
+  );
+
+
+  const onSelectChange = (sl) => {
+    console.log("selected Option...", sl);
+    setLanguage(sl);
+  };
+
+
+  const onChange = (action, data) => {
+    switch (action) {
+      case "code": {
+        setCode(data);
+        break;
+      }
+      default: {
+        console.warn("case not handled!", action, data);
+      }
+    }
+  };
 
   return (
     <>
+      <Toaster
+        position="top-right" 
+        pauseOnHover
+      />
       <Navbar handleThemeChange={handleThemeChange} />
       <div className="flex flex-row gap-8 mt-4 flex-wrap md:flex-nowrap">
         <div className="px-4 py-2 flex items-center gap-4">
@@ -27,10 +86,18 @@ const HomePage = () => {
             Language:
           </h1>
 
-        <div className="px-4 py-2">
-          <span className="text-xl font-bold text-gray-800"></span>
+          <LanguagesDropdown onSelectChange={onSelectChange} />
 
-          <h1 className="text-xl font-bold text-gray-800 font-mono">Theme:</h1>
+        </div>
+        <div className="px-4 py-2 flex items-center gap-4">
+          <span className="text-xl font-bold text-gray-800">🎨</span>
+
+          <h1 className="text-xl font-bold text-gray-800 font-mono">
+            Theme:
+          </h1>
+
+          <ThemeSelector handleThemeChange={handleThemeChange} theme={theme} />
+
         </div>
       </div>
 
