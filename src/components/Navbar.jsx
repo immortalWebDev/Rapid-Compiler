@@ -14,8 +14,10 @@ export default function Navbar() {
         </h1>
       </div>
 
-      <div className="nav-links-container">
-        <p className="nav-item text-center">Coding platform by Me</p>
+      <div className="nav-links-container flex items-center space-x-8">
+        <p className="nav-item text-center font-medium font-mono text-lg tracking-wide">
+          Build, Compile & Test Your Code! <span title="100 Requests per day only">(Beta)</span>
+        </p>
       </div>
     </div>
   );
