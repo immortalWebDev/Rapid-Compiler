@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import MaintenancePage from './components/MaintenancePage/MaintenancePage';
 
-const isMaintenanceMode = true
+const isMaintenanceMode = false
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
